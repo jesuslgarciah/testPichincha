@@ -1,0 +1,240 @@
+{
+	"info": {
+		"_postman_id": "0e26dcab-eacd-4c4a-a5f7-4be2710c1971",
+		"name": "Pichincha Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10460088"
+	},
+	"item": [
+		{
+			"name": "API 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Codigo de estado es 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"id\": 10,\r\n        \"title\": \"Post 1\"\r\n    },\r\n    {\r\n        \"id\": 2,\r\n        \"title\": \"Paula\"\r\n    },\r\n    {\r\n        \"id\": 3,\r\n        \"title\": \"Lili\"\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/typicode/demo/posts",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"typicode",
+						"demo",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "API 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Codigo de estado es 404 no encontrado\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"posts\": [\r\n        {\r\n            \"id\": 1,\r\n            \"title\": \"Post 1\"\r\n        },\r\n        {\r\n            \"id\": 2,\r\n            \"title\": \"Post 2\"\r\n        },\r\n        {\r\n            \"id\": 3,\r\n            \"title\": \"Post 3\"\r\n        }\r\n    ],\r\n    \"comments\": [\r\n        {\r\n            \"id\": 1,\r\n            \"body\": \"some comment\",\r\n            \"postId\": 1\r\n        },\r\n        {\r\n            \"id\": 2,\r\n            \"body\": \"some comment\",\r\n            \"postId\": 1\r\n        }\r\n    ],\r\n    \"profile\": {\r\n        \"name\": \"typicode\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/typ/demo/posts",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"typ",
+						"demo",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "API 3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Validar que la respuesta contenga un id con valor 3\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(3);\r",
+							"});\r",
+							"pm.test(\"Validar que la respuesta venga con lo campos espera\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"username\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"address\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"street\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"suite\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"city\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"zipcode\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"geo\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"lat\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"lng\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"phone\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"website\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"company\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"catchPhrase\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"bs\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/users/3",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"users",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Punto7",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Codigo de estado es 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Validar que la respuesta es success=true\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.sucess).to.eql(\"false\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "mt0dgHmLJMVQhvjpNXDyA83vA_PxH23Y",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Id\": 12345,\r\n    \"Customer\": \"John Smith\",\r\n    \"Quantity\": 1,\r\n    \"Price\": 10.00\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrlReqbin}}/echo/post/json",
+					"host": [
+						"{{baseUrlReqbin}}"
+					],
+					"path": [
+						"echo",
+						"post",
+						"json"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://my-json-server.typicode.com",
+			"type": "string"
+		},
+		{
+			"key": "baseUrlReqbin",
+			"value": "https://reqbin.com",
+			"type": "string"
+		}
+	]
+}
