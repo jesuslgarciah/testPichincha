@@ -25,7 +25,11 @@ de chrome con que se encuentra instalada en su equipo, y dejarla en el directori
 
 Ejecutar los siguientes pasos para ejecutar la prueba que ejecuta un flujo E2E de una compra de 2 articulos en la tienda
 
-1. Usar Intellij Idea IDE
+1. Descargar el proyecto, puede usar GIT desde la consola de comandos (previamente debe tener GIT instalado en su maquina)
+```
+git clone https://github.com/jesuslgarciah/testPichincha.git
+```
+2. Usar Intellij Idea IDE
 2. Dirigirse al [runner](./src/test/java/com/pichincha/automation/runners/TestRunner.java)
 3. Ejecutar la clase **TestRunner** mediante el IDE 
 
@@ -37,3 +41,25 @@ En ella se encuentran las variables y pruebas que se ejecutan una vez se ejecute
 
 En el archivo excel [Resultados prueba exploratoria](./PruebaPichincha.xlsx) en la hoja **Pruebas API** se encuentra el
 detalle de lo solicitado en el punto 6 y 7
+
+El caso fallido solicitado en el punto 7 no pudo ser generado debido a que el API siempre retorna la misma respuesta,
+cambiando incluso el body del request
+
+### Pruebas de Carga y Stress
+Solucion del punto 8
+
+El archivo de JMeter con la solucion del punto 8 se puede encontrar [aquí](./Pichincha.jmx)
+
+#### Analisis de las pruebas
+
+![alt text](./resultado.jpg)
+
+El resultado de la prueba dice que la cantidad de transacciones por segundo ejecutadas es de 1.5
+
+Asi mismo, se presenta una taza de error del 27%, el error que devuelve es un estado 508 Loop Detected, lo que indica
+que el servidor finaliza una operacion debido a que encontro un bucle infinito mientras procesaba la solicitud
+
+En la siguiente imagen se puede ver el comportamiento de las transacciones ejecutadas correctamente y los fallos presentados
+![alt text](./request-sucess-failure.jpg)
+
+
